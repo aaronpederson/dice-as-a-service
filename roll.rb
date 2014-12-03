@@ -2,8 +2,11 @@
 
 require 'highline/import'
 
-dice = ask 'How many dice should we roll? ', Integer
-sides = ask 'How many sides per die? ', Integer
+dice = ARGV[0].to_i
+sides = ARGV[1].to_i
+
+# dice = ask 'How many dice should we roll? ', Integer
+# sides = ask 'How many sides per die? ', Integer
 
 puts "You asked for #{ dice } dice with #{ sides } sides."
 
