@@ -1,12 +1,11 @@
 #!/usr/bin/env ruby
 
-puts 'How many dice should we roll?'
-requested_dice = gets.chomp.to_i
+require 'highline/import'
 
-puts 'How many sides per die?'
-requested_sides = gets.chomp.to_i
+dice = ask 'How many dice should we roll? ', Integer
+sides = ask 'How many sides per die? ', Integer
 
-puts "You asked for #{ requested_dice } dice with #{ requested_sides } sides."
+puts "You asked for #{ dice } dice with #{ sides } sides."
 
 def roll(dice, sides)
   rolls = []
@@ -20,6 +19,6 @@ def roll(dice, sides)
   return rolls
 end
 
-rolls = roll requested_dice, requested_sides
+rolls = roll dice, sides
 
 puts "Total rolled was #{ rolls.reduce :+ }"
