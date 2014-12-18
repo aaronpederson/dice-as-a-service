@@ -20,13 +20,20 @@ def listen
   context = ZMQ::Context.new
   server = context.socket ZMQ::REP
   server.bind 'tcp://*:5555'
+
+  publisher = context.socket ZMQ::PUB
+  publisher.bind 'tcp://*:5556'
   
   puts 'Dice Server Awaiting Orders!'
   loop do
     request = ''
     server.recv_string request
     dice, sides = request.split(/d/)
-    server.send_string roll(dice.to_i, sides.to_i)
+
+    rolled = roll(dice.to_i, sides.to_i)
+    
+    server.send_string rolled
+    publisher.send_string "roll #{ rolled }"
   end
 end
 
