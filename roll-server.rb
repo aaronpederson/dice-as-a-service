@@ -35,7 +35,7 @@ def listen
     rolled = roll(dice.to_i, sides.to_i)
     
     server.send_string rolled
-    publisher.send_string "#{ channel } #{ rolled }"
+    publisher.send_string "#{ channel } #{ rolled }" unless channel == 'private'
   end
 end
 
