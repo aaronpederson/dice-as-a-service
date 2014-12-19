@@ -28,12 +28,14 @@ def listen
   loop do
     request = ''
     server.recv_string request
-    dice, sides = request.split(/d/)
+
+    dice, sides, channel = request.split(/,/)
+    puts channel
 
     rolled = roll(dice.to_i, sides.to_i)
     
     server.send_string rolled
-    publisher.send_string "roll #{ rolled }"
+    publisher.send_string "#{ channel } #{ rolled }"
   end
 end
 

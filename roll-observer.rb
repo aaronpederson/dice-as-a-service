@@ -5,7 +5,7 @@ require 'ffi-rzmq'
 context = ZMQ::Context.new
 subscriber = context.socket ZMQ::SUB
 subscriber.connect 'tcp://localhost:5556'
-subscriber.setsockopt ZMQ::SUBSCRIBE, 'roll'
+subscriber.setsockopt ZMQ::SUBSCRIBE, ''
 
 puts 'Silently creeping your rolls.'
 
